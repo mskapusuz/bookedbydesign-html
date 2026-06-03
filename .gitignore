@@ -2,3 +2,5 @@
 .playwright-mcp/
 *.png
 !assets/*.png
+!background-clean.png
+!flower-*.png

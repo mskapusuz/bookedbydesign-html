@@ -132,7 +132,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   line-height: 1.05;
   letter-spacing: .04em;
   text-transform: uppercase;
-  color: var(--ink);
+  color: #fff7ef;
 }
 .brand small{
   display: block;
@@ -142,7 +142,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   font-size: 10px;
   letter-spacing: .24em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: rgba(255,250,244,.75);
 }
 .nav-links{
   display: flex;
@@ -157,7 +157,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   letter-spacing: .24em;
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--ink);
+  color: rgba(255,250,244,.88);
   position: relative;
   padding: 6px 0;
   white-space: nowrap;
@@ -165,7 +165,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .nav-links a::after{
   content:"";
   position:absolute; left: 50%; right: 50%; bottom: 0;
-  height: 1px; background: var(--ink);
+  height: 1px; background: #fff7ef;
   transition: left .3s ease, right .3s ease;
 }
 .nav-links a:hover::after{ left: 0; right: 0; }
@@ -204,9 +204,9 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .nav-theme{
   width: 36px; height: 36px;
   border-radius: 50%;
-  border: 1px solid var(--hairline);
+  border: 1px solid rgba(255,255,255,.5);
   display: inline-flex; align-items: center; justify-content: center;
-  color: var(--ink);
+  color: #fff7ef;
   transition: transform .3s ease;
 }
 .nav-theme:hover{ transform: rotate(45deg); }
@@ -219,11 +219,12 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   display: none;
   width: 40px; height: 40px;
   border-radius: 50%;
-  border: 1px solid var(--hairline);
+  border: 1px solid rgba(255,255,255,.5);
   align-items: center;
   justify-content: center;
   background: transparent;
   cursor: pointer;
+  color: #fff7ef;
   transition: background .3s ease;
   flex-shrink: 0;
 }
@@ -378,11 +379,14 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   top: 0;
   right: 0;
   bottom: 0;
-  left: 10%;
+  left: 0;
   z-index: -2;
-  background-image: url("hero-bg.jpg");
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(255,255,255,.26), transparent 26%),
+    linear-gradient(90deg, rgba(66,33,18,.18), rgba(255,255,255,0) 48%),
+    url("background-clean.png");
   background-size: cover;
-  background-position: 60% center;
+  background-position: center;
   background-repeat: no-repeat;
 }
 /* Left-side wash: cover crop artifacts AND give clean cream surface for the
@@ -392,25 +396,46 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   content:"";
   position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(
-      to right,
-      var(--cream-2) 0%,
-      var(--cream-2) 18%,
-      rgba(236,225,214,.75) 26%,
-      rgba(236,225,214,.35) 34%,
-      rgba(236,225,214,.08) 42%,
-      rgba(236,225,214,0)   48%
-    ),
-    linear-gradient(
-      to top,
-      rgba(236,225,214,.15) 0%,
-      rgba(236,225,214,0)   8%
-    );
+    linear-gradient(90deg, rgba(40,22,13,.24), transparent 45%, rgba(255,255,255,.04)),
+    radial-gradient(circle at 72% 52%, transparent 0 35%, rgba(255,244,232,.12) 68%, rgba(80,42,22,.18) 100%);
+  mix-blend-mode: multiply;
+  opacity: .58;
   pointer-events: none;
+}
+/* Flower & spark layers for hero animation */
+.hero .flower-layer,
+.hero .spark-layer{
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 40%;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+}
+.hero .flower{
+  position: absolute;
+  left: 0; top: 0;
+  width: var(--size);
+  height: auto;
+  opacity: var(--opacity);
+  filter: drop-shadow(0 12px 14px rgba(75,38,24,.14));
+  will-change: transform, opacity;
+  transform: translate3d(-999px,-999px,0);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.hero .spark{
+  position: absolute;
+  width: 4px; height: 4px;
+  border-radius: 999px;
+  background: rgba(219,174,96,.9);
+  box-shadow: 0 0 12px rgba(219,174,96,.55);
+  opacity: .72;
+  will-change: transform, opacity;
 }
 .hero-content{
   position: relative;
-  z-index: 1;
+  z-index: 3;
   padding-top: clamp(200px, 28vh, 320px);
   padding-bottom: 80px;
   display: grid;
@@ -425,20 +450,21 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   font-size: clamp(58px, 7.4vw, 108px);
   line-height: 1.02;
   letter-spacing: -.025em;
-  color: var(--ink);
+  color: #fff7ef;
   margin: 0 0 44px;
+  text-shadow: 0 14px 40px rgba(43,31,24,.22);
 }
 .hero-divider{
   width: 52px;
   height: 1px;
-  background: var(--ink-soft);
+  background: rgba(255,250,244,.6);
   margin-bottom: 28px;
 }
 .hero p{
   max-width: 380px;
   font-size: 14.5px;
   line-height: 1.85;
-  color: var(--ink-soft);
+  color: rgba(255,250,244,.84);
   margin: 0 0 44px;
 }
 
@@ -448,7 +474,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   align-items: center;
   gap: 22px;
   text-decoration: none;
-  color: var(--ink);
+  color: #fff7ef;
 }
 .hero-cta-label{
   font-size: 11px;
@@ -456,23 +482,23 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   text-transform: uppercase;
   font-weight: 500;
   padding: 16px 32px;
-  border: 1px solid var(--hairline-2);
+  border: 1px solid rgba(255,255,255,.58);
   transition: background .3s ease, color .3s ease;
 }
 .hero-cta:hover .hero-cta-label{
-  background: var(--ink);
-  color: var(--cream);
+  background: rgba(255,248,239,.88);
+  color: var(--ink);
 }
 .hero-cta-arrow{
   width: 38px; height: 38px;
   border-radius: 50%;
-  border: 1px solid var(--hairline-2);
+  border: 1px solid rgba(255,255,255,.58);
   display: inline-flex; align-items:center; justify-content:center;
   transition: background .35s ease, color .35s ease, transform .35s ease;
 }
 .hero-cta:hover .hero-cta-arrow{
-  background: var(--ink);
-  color: var(--cream);
+  background: rgba(255,248,239,.88);
+  color: var(--ink);
   transform: translateX(3px);
 }
 .hero-cta-arrow svg{ width: 14px; height: 14px; }
@@ -527,14 +553,14 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   letter-spacing: .3em;
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--ink);
+  color: rgba(255,250,244,.8);
   display: flex;
   align-items: center;
   gap: 16px;
   line-height: 1.6;
 }
 .scroll-explore::after{
-  content:""; width: 1px; height: 56px; background: var(--ink);
+  content:""; width: 1px; height: 56px; background: rgba(255,250,244,.6);
 }
 
 /* =================================================================
@@ -1148,18 +1174,12 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   .hero-cta-arrow{ width: 34px; height: 34px; }
   .hero::before{
     background:
-      linear-gradient(
-        180deg,
-        var(--cream-2) 0%,
-        var(--cream-2) 36%,
-        rgba(236,225,214,.88) 48%,
-        rgba(236,225,214,.25) 60%,
-        rgba(236,225,214,0)   72%
-      );
+      linear-gradient(90deg, rgba(40,22,13,.18), transparent 50%),
+      radial-gradient(circle at 72% 52%, transparent 0 35%, rgba(255,244,232,.1) 68%, rgba(80,42,22,.14) 100%);
   }
   .hero-img{
     left: 0;
-    background-position: 55% bottom;
+    background-position: center;
   }
   .play{
     right: 20px;
@@ -1410,6 +1430,8 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
     <div></div>
   </div>
 
+  <div class="flower-layer" aria-hidden="true"></div>
+  <div class="spark-layer" aria-hidden="true"></div>
   <div class="hero-shelf" aria-hidden="true"></div>
 </section>
 
@@ -1674,5 +1696,127 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   </div>
 </footer>
 
+<script>
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+  const flowerLayer = hero.querySelector('.flower-layer');
+  const sparkLayer = hero.querySelector('.spark-layer');
+
+  const flowerSources = [
+    './flower-1.png','./flower-2.png','./flower-3.png',
+    './flower-4.png','./flower-5.png','./flower-6.png',
+    './flower-7.png','./flower-8.png','./flower-9.png'
+  ];
+
+  const state = {
+    width: flowerLayer.offsetWidth,
+    height: hero.offsetHeight,
+    flowers: [],
+    sparks: [],
+    last: performance.now(),
+    pointerX: 0,
+    wind: 0
+  };
+
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+  const rand = (min, max) => min + Math.random() * (max - min);
+  const pick = arr => arr[(Math.random() * arr.length) | 0];
+
+  function createFlower(index) {
+    const img = new Image();
+    img.className = 'flower';
+    img.src = pick(flowerSources);
+    img.decoding = 'async';
+    flowerLayer.appendChild(img);
+    const flower = { el: img, index };
+    resetFlower(flower, true);
+    return flower;
+  }
+
+  function resetFlower(flower, initial) {
+    const mobile = state.width < 720;
+    flower.x = rand(-80, state.width + 80);
+    flower.y = initial ? rand(-state.height, state.height) : rand(-180, -40);
+    flower.baseX = flower.x;
+    flower.size = rand(mobile ? 20 : 26, mobile ? 54 : 76);
+    flower.speed = rand(mobile ? 22 : 28, mobile ? 66 : 94);
+    flower.sway = rand(18, 80);
+    flower.swaySpeed = rand(.55, 1.35);
+    flower.spin = rand(-70, 70);
+    flower.rotation = rand(0, 360);
+    flower.opacity = rand(.42, .92);
+    flower.phase = rand(0, Math.PI * 2);
+    flower.depth = rand(.55, 1.35);
+    flower.el.style.setProperty('--size', flower.size + 'px');
+    flower.el.style.setProperty('--opacity', flower.opacity.toFixed(2));
+  }
+
+  function createSpark() {
+    const dot = document.createElement('i');
+    dot.className = 'spark';
+    sparkLayer.appendChild(dot);
+    return {
+      el: dot,
+      x: rand(0, state.width),
+      y: rand(-state.height, state.height),
+      speed: rand(18, 48),
+      size: rand(2, 5),
+      phase: rand(0, Math.PI * 2),
+      opacity: rand(.18, .68)
+    };
+  }
+
+  function resize() {
+    state.width = flowerLayer.offsetWidth;
+    state.height = hero.offsetHeight;
+    const targetFlowers = clamp(Math.round(state.width / 42), 12, 32);
+    const targetSparks = clamp(Math.round(state.width / 24), 20, 56);
+    while (state.flowers.length < targetFlowers) state.flowers.push(createFlower(state.flowers.length));
+    while (state.flowers.length > targetFlowers) state.flowers.pop().el.remove();
+    while (state.sparks.length < targetSparks) state.sparks.push(createSpark());
+    while (state.sparks.length > targetSparks) state.sparks.pop().el.remove();
+  }
+
+  function tick(now) {
+    const dt = Math.min((now - state.last) / 1000, .034);
+    state.last = now;
+    state.wind += ((state.pointerX * 22) - state.wind) * .025;
+
+    for (const f of state.flowers) {
+      f.y += f.speed * f.depth * dt;
+      f.rotation += f.spin * dt;
+      const drift = Math.sin((now * .001 * f.swaySpeed) + f.phase) * f.sway;
+      const x = f.baseX + drift + state.wind;
+      const scale = .78 + f.depth * .18;
+      f.el.style.transform = 'translate3d(' + x + 'px,' + f.y + 'px,0) rotate(' + f.rotation + 'deg) scale(' + scale + ')';
+      if (f.y > state.height + 120) resetFlower(f);
+    }
+
+    for (const s of state.sparks) {
+      s.y += s.speed * dt;
+      const x = s.x + Math.sin((now * .001) + s.phase) * 18 + state.wind * .28;
+      const twinkle = s.opacity * (.58 + Math.sin(now * .004 + s.phase) * .32);
+      s.el.style.cssText = 'width:' + s.size + 'px;height:' + s.size + 'px;opacity:' + twinkle + ';transform:translate3d(' + x + 'px,' + s.y + 'px,0)';
+      if (s.y > state.height + 30) {
+        s.x = rand(0, state.width);
+        s.y = rand(-160, -20);
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('pointermove', function(e) {
+    state.pointerX = ((e.clientX / state.width) - .5) * 2;
+  }, { passive: true });
+
+  resize();
+  requestAnimationFrame(tick);
+})();
+</script>
 </body>
 </html>
