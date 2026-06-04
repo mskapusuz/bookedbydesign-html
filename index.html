@@ -118,6 +118,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 }
 .pill-link:hover .arrow{ background: var(--ink); color: var(--cream); transform: translateX(3px); }
 .pill-link .arrow svg{ width: 15px; height: 15px; }
+.pill-link.no-rule .label::after{ display: none; }
 
 /* =================================================================
    NAV
@@ -189,16 +190,17 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .btn-enquire{
   display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   background: var(--wine);
   color: #fff;
   border-radius: 999px;
-  padding: 15px 26px 15px 30px;
-  font-size: 11px;
-  letter-spacing: .28em;
-  font-weight: 500;
+  padding: 12px 18px 12px 24px;
+  font-size: 10px;
+  letter-spacing: .24em;
+  font-weight: 600;
   text-transform: uppercase;
   transition: background .25s ease;
+  white-space: nowrap;
 }
 .btn-enquire:hover{ background: var(--wine-deep); }
 .btn-enquire .arrow{
@@ -425,11 +427,13 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .hero .flower-layer,
 .hero .spark-layer{
   position: absolute;
-  top: 0; right: 0; bottom: 0; left: 40%;
+  top: 0; right: 0; bottom: 0; left: 30%;
   z-index: 2;
   pointer-events: none;
   overflow: hidden;
   contain: strict;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14%);
+  mask-image: linear-gradient(to right, transparent 0%, black 14%);
 }
 .hero .flower{
   position: absolute;
@@ -488,6 +492,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .hero h1 em{
   font-style: italic;
   font-weight: 500;
+  color: var(--wine);
 }
 .hero p{
   max-width: 380px;
@@ -576,20 +581,30 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .scroll-explore{
   position: absolute;
   right: var(--pad-x);
-  bottom: 84px;
-  z-index: 2;
+  bottom: 52px;
+  z-index: 4;
   font-size: 9px;
-  letter-spacing: .3em;
+  letter-spacing: .26em;
   text-transform: uppercase;
   font-weight: 500;
-  color: var(--ink);
+  color: var(--ink-soft);
   display: flex;
   align-items: center;
-  gap: 16px;
-  line-height: 1.6;
+  gap: 14px;
+  line-height: 1.65;
+  text-align: right;
 }
 .scroll-explore::after{
-  content:""; width: 1px; height: 56px; background: var(--ink);
+  content:"";
+  width: 1px;
+  height: 52px;
+  background: var(--ink-soft);
+  flex-shrink: 0;
+  animation: scrollLine 2.4s ease-in-out infinite;
+}
+@keyframes scrollLine{
+  0%, 100%{ opacity: .4; transform: scaleY(1); }
+  50%{ opacity: 1; transform: scaleY(1.15); }
 }
 
 /* =================================================================
@@ -1057,9 +1072,8 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 
 .footer-links{
   display: grid;
-  grid-template-columns: repeat(3, max-content);
-  gap: 52px;
-  justify-content: end;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
 }
 .footer-links h4{
   font-size: 10.5px;
@@ -1366,12 +1380,12 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   .footer-links h4{ font-size: 10px; margin-bottom: 12px; }
   .footer-links a{ font-size: 12px; line-height: 1.55; padding: 3px 0; }
   .footer-card{
-    min-height: 90px;
+    min-height: 120px;
+    aspect-ratio: 2.4 / 1;
     padding: 20px 22px;
     border-radius: 8px;
   }
-  .footer-card h4{
-  display: none; font-size: 19px; }
+  .footer-card h4{ display: none; }
   .footer-bottom{
     flex-direction: column;
     gap: 16px;
@@ -1495,9 +1509,9 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
       </h1>
       <p>Showit websites with strategy and style—designed to reach dream clients and elevate your brand.</p>
 
-      <a href="#work" class="hero-cta">
-        <span class="hero-cta-label">Explore our work</span>
-        <span class="hero-cta-arrow" aria-hidden="true">
+      <a href="#work" class="pill-link">
+        <span class="label">Explore our work</span>
+        <span class="arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </span>
       </a>
@@ -1563,7 +1577,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
         <span class="slash">/</span>
         <span>OUR SERVICES</span>
       </span>
-      <a href="#all-services" class="pill-link">
+      <a href="#all-services" class="pill-link no-rule">
         <span class="label">View all services</span>
         <span class="arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
