@@ -635,7 +635,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 }
 .growth-grid{
   display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(0, 1.15fr);
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.2fr);
   align-items: stretch;
 }
 .growth-left{
@@ -697,9 +697,11 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 }
 .growth-right{
   background-image: url("assets/growth-bg.png");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
   min-height: 420px;
+  background-color: var(--cream);
 }
 
 /* =================================================================
