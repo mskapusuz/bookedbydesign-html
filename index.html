@@ -3,8 +3,14 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Booked By Design — Websites Worth Celebrating</title>
-<meta name="description" content="Editorial websites for wedding professionals and creative businesses who want to look extraordinary online." />
+<title>Booked By Design — Websites that book, connect & elevate your brand</title>
+<meta name="description" content="Showit websites with strategy and style — designed to reach dream clients and elevate your brand. By Charis White & Co." />
+<meta property="og:title" content="Booked By Design — Strategic Websites for Wedding Professionals" />
+<meta property="og:description" content="Showit websites with strategy and style — designed to reach dream clients and elevate your brand." />
+<meta property="og:image" content="background-clean.png" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='24' font-size='24'>✦</text></svg>" />
+<link rel="preload" as="image" href="background-clean.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,14 +47,15 @@
   --sans:         "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* rhythm */
-  --maxw:         1240px;
-  --pad-x:        clamp(20px, 3.6vw, 52px);
+  --maxw:         1440px;
+  --pad-x:        clamp(20px, 3.6vw, 72px);
 }
 
 /* =================================================================
    Reset / base
 ================================================================== */
 *,*::before,*::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
 html,body{ margin:0; padding:0; }
 body{
   font-family: var(--sans);
@@ -119,6 +126,8 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   position: absolute;
   top: 0; left: 0; right: 0;
   z-index: 30;
+  max-width: calc(var(--maxw) + var(--pad-x) * 2);
+  margin: 0 auto;
   padding: 32px var(--pad-x) 0;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -132,7 +141,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   line-height: 1.05;
   letter-spacing: .04em;
   text-transform: uppercase;
-  color: #fff7ef;
+  color: var(--ink);
 }
 .brand small{
   display: block;
@@ -142,7 +151,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   font-size: 10px;
   letter-spacing: .24em;
   text-transform: uppercase;
-  color: rgba(255,250,244,.75);
+  color: var(--ink-soft);
 }
 .nav-links{
   display: flex;
@@ -157,7 +166,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   letter-spacing: .24em;
   text-transform: uppercase;
   font-weight: 500;
-  color: rgba(255,250,244,.88);
+  color: var(--ink);
   position: relative;
   padding: 6px 0;
   white-space: nowrap;
@@ -165,7 +174,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .nav-links a::after{
   content:"";
   position:absolute; left: 50%; right: 50%; bottom: 0;
-  height: 1px; background: #fff7ef;
+  height: 1px; background: var(--ink);
   transition: left .3s ease, right .3s ease;
 }
 .nav-links a:hover::after{ left: 0; right: 0; }
@@ -204,9 +213,9 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .nav-theme{
   width: 36px; height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.5);
+  border: 1px solid var(--hairline);
   display: inline-flex; align-items: center; justify-content: center;
-  color: #fff7ef;
+  color: var(--ink);
   transition: transform .3s ease;
 }
 .nav-theme:hover{ transform: rotate(45deg); }
@@ -219,12 +228,12 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   display: none;
   width: 40px; height: 40px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.5);
+  border: 1px solid var(--hairline);
   align-items: center;
   justify-content: center;
   background: transparent;
   cursor: pointer;
-  color: #fff7ef;
+  color: var(--ink);
   transition: background .3s ease;
   flex-shrink: 0;
 }
@@ -396,10 +405,20 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   content:"";
   position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(90deg, rgba(40,22,13,.24), transparent 45%, rgba(255,255,255,.04)),
-    radial-gradient(circle at 72% 52%, transparent 0 35%, rgba(255,244,232,.12) 68%, rgba(80,42,22,.18) 100%);
-  mix-blend-mode: multiply;
-  opacity: .58;
+    linear-gradient(
+      to right,
+      var(--cream-2) 0%,
+      var(--cream-2) 22%,
+      rgba(236,225,214,.82) 30%,
+      rgba(236,225,214,.45) 38%,
+      rgba(236,225,214,.12) 46%,
+      rgba(236,225,214,0)   54%
+    ),
+    linear-gradient(
+      to top,
+      rgba(236,225,214,.15) 0%,
+      rgba(236,225,214,0)   8%
+    );
   pointer-events: none;
 }
 /* Flower & spark layers for hero animation */
@@ -436,35 +455,45 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .hero-content{
   position: relative;
   z-index: 3;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
   padding-top: clamp(200px, 28vh, 320px);
   padding-bottom: 80px;
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, .8fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 40px;
   min-height: calc(100vh - 80px);
   align-content: start;
 }
+.hero-eyebrow{
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
 .hero h1{
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(58px, 7.4vw, 108px);
-  line-height: 1.02;
-  letter-spacing: -.025em;
-  color: #fff7ef;
-  margin: 0 0 44px;
-  text-shadow: 0 14px 40px rgba(43,31,24,.22);
+  font-size: clamp(48px, 6vw, 86px);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin: 0 0 28px;
 }
-.hero-divider{
-  width: 52px;
-  height: 1px;
-  background: rgba(255,250,244,.6);
-  margin-bottom: 28px;
+.hero h1 em{
+  font-style: italic;
+  font-weight: 500;
 }
 .hero p{
   max-width: 380px;
   font-size: 14.5px;
   line-height: 1.85;
-  color: rgba(255,250,244,.84);
+  color: var(--ink-soft);
   margin: 0 0 44px;
 }
 
@@ -474,7 +503,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   align-items: center;
   gap: 22px;
   text-decoration: none;
-  color: #fff7ef;
+  color: var(--ink);
 }
 .hero-cta-label{
   font-size: 11px;
@@ -482,23 +511,23 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   text-transform: uppercase;
   font-weight: 500;
   padding: 16px 32px;
-  border: 1px solid rgba(255,255,255,.58);
+  border: 1px solid var(--hairline-2);
   transition: background .3s ease, color .3s ease;
 }
 .hero-cta:hover .hero-cta-label{
-  background: rgba(255,248,239,.88);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--cream);
 }
 .hero-cta-arrow{
   width: 38px; height: 38px;
   border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.58);
+  border: 1px solid var(--hairline-2);
   display: inline-flex; align-items:center; justify-content:center;
   transition: background .35s ease, color .35s ease, transform .35s ease;
 }
 .hero-cta:hover .hero-cta-arrow{
-  background: rgba(255,248,239,.88);
-  color: var(--ink);
+  background: var(--ink);
+  color: var(--cream);
   transform: translateX(3px);
 }
 .hero-cta-arrow svg{ width: 14px; height: 14px; }
@@ -553,14 +582,14 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   letter-spacing: .3em;
   text-transform: uppercase;
   font-weight: 500;
-  color: rgba(255,250,244,.8);
+  color: var(--ink);
   display: flex;
   align-items: center;
   gap: 16px;
   line-height: 1.6;
 }
 .scroll-explore::after{
-  content:""; width: 1px; height: 56px; background: rgba(255,250,244,.6);
+  content:""; width: 1px; height: 56px; background: var(--ink);
 }
 
 /* =================================================================
@@ -728,13 +757,13 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   content:"";
   position: absolute;
   inset: 0;
-  background: rgba(241, 214, 204, .18);
+  background: rgba(241, 214, 204, .38);
   pointer-events: none;
   transition: background .35s ease;
   border-radius: 6px;
 }
 .service-card:hover::after{
-  background: rgba(241, 214, 204, .08);
+  background: rgba(241, 214, 204, .22);
 }
 .service-num{
   position: relative; z-index: 1;
@@ -1071,19 +1100,15 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   content:"";
   position: absolute;
   inset: 0;
-  background-image: url("data:image/jpeg;base64,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");
+  background-image: url("assets/strategy-meets-design.webp");
   background-size: cover;
-  background-position: right center;
-  opacity: 1;
+  background-position: center;
   z-index: 0;
+  border-radius: 6px;
 }
-.footer-card::after{
-  content:"";
-  position:absolute; inset:0;
-  background: linear-gradient(90deg, rgba(243,223,213,.72) 0%, rgba(243,223,213,.25) 40%, rgba(243,223,213,0) 65%);
-  z-index: 0;
-}
+
 .footer-card h4{
+  display: none;
   position: relative;
   z-index: 1;
   font-family: var(--serif);
@@ -1118,6 +1143,29 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 }
 .footer-bottom .legal a{ color: var(--ink-soft); transition: color .2s ease; }
 .footer-bottom .legal a:hover{ color: var(--wine); }
+
+/* =================================================================
+   Wide screens (27" and up)
+================================================================== */
+@media (min-width: 1800px){
+  :root{ --maxw: 1600px; --pad-x: 80px; }
+  .hero::before{
+    background:
+      linear-gradient(
+        to right,
+        var(--cream-2) 0%,
+        var(--cream-2) 26%,
+        rgba(236,225,214,.85) 34%,
+        rgba(236,225,214,.5) 42%,
+        rgba(236,225,214,.15) 50%,
+        rgba(236,225,214,0)   58%
+      ),
+      linear-gradient(to top, rgba(236,225,214,.15) 0%, rgba(236,225,214,0) 8%);
+  }
+  .service-card{ min-height: 220px; }
+  .portfolio-card{ aspect-ratio: 1 / 1.1; }
+  .featured-grid{ gap: 52px; }
+}
 
 /* =================================================================
    Responsive
@@ -1165,15 +1213,12 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
     min-height: auto;
     gap: 0;
   }
+  .hero-eyebrow{ font-size: 9px; margin-bottom: 14px; }
   .hero h1{
-    font-size: clamp(38px, 11vw, 56px);
-    line-height: 1.04;
-    margin-bottom: 24px;
-    letter-spacing: -.02em;
-  }
-  .hero-divider{
-    width: 40px;
+    font-size: clamp(32px, 9vw, 48px);
+    line-height: 1.08;
     margin-bottom: 20px;
+    letter-spacing: -.02em;
   }
   .hero p{
     font-size: 14px;
@@ -1189,12 +1234,18 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
   .hero-cta-arrow{ width: 34px; height: 34px; }
   .hero::before{
     background:
-      linear-gradient(90deg, rgba(40,22,13,.18), transparent 50%),
-      radial-gradient(circle at 72% 52%, transparent 0 35%, rgba(255,244,232,.1) 68%, rgba(80,42,22,.14) 100%);
+      linear-gradient(
+        180deg,
+        var(--cream-2) 0%,
+        var(--cream-2) 36%,
+        rgba(236,225,214,.88) 48%,
+        rgba(236,225,214,.25) 60%,
+        rgba(236,225,214,0)   72%
+      );
   }
   .hero-img{
     left: 0;
-    background-position: center;
+    background-position: 55% bottom;
   }
   .play{
     right: 20px;
@@ -1319,7 +1370,8 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
     padding: 20px 22px;
     border-radius: 8px;
   }
-  .footer-card h4{ font-size: 19px; }
+  .footer-card h4{
+  display: none; font-size: 19px; }
   .footer-bottom{
     flex-direction: column;
     gap: 16px;
@@ -1341,7 +1393,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 /* Very narrow phones (≤380px) */
 @media (max-width: 380px){
   :root{ --pad-x: 18px; }
-  .hero h1{ font-size: 34px; }
+  .hero h1{ font-size: 28px; }
   .hero-content{ padding-top: 100px; }
   .hero p{ font-size: 13.5px; }
   .services-grid{ grid-template-columns: 1fr; }
@@ -1373,15 +1425,22 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 
   <nav aria-label="Primary">
     <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#pricing">Pricing</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#journal">Journal</a></li>
+      <li><a href="#resources">Resources</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
   <div class="nav-right">
+    <a href="#contact" class="btn-enquire">
+      Enquire
+      <span class="arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    </a>
     <button class="hamburger" aria-label="Open menu">
       <span></span>
     </button>
@@ -1396,10 +1455,11 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
     <ul class="mobile-drawer-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#pricing">Pricing</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#journal">Journal</a></li>
+      <li><a href="#resources">Resources</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a href="#contact" class="mobile-drawer-cta">
@@ -1428,21 +1488,33 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 
   <div class="container hero-content">
     <div>
+      <div class="hero-eyebrow">STRATEGIC WEBSITES<br>FOR WEDDING PROFESSIONALS</div>
       <h1>
-        Websites Worth<br>
-        Celebrating
+        Websites that book, connect &amp;<br>
+        <em>elevate</em> your brand.
       </h1>
-      <div class="hero-divider" aria-hidden="true"></div>
-      <p>Editorial websites for wedding professionals and creative businesses who want to look extraordinary online.</p>
+      <p>Showit websites with strategy and style—designed to reach dream clients and elevate your brand.</p>
 
       <a href="#work" class="hero-cta">
-        <span class="hero-cta-label">View our work</span>
+        <span class="hero-cta-label">Explore our work</span>
         <span class="hero-cta-arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </span>
       </a>
     </div>
     <div></div>
+  </div>
+
+  <button class="play" aria-label="Play showreel">
+    <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+      <defs><path id="circ" d="M 60,60 m -42,0 a 42,42 0 1,1 84,0 a 42,42 0 1,1 -84,0"/></defs>
+      <text><textPath href="#circ">PLAY SHOWREEL · PLAY SHOWREEL · </textPath></text>
+    </svg>
+    <span class="triangle" aria-hidden="true"></span>
+  </button>
+
+  <div class="scroll-explore" aria-hidden="true">
+    Scroll<br>Explore
   </div>
 
   <div class="flower-layer" aria-hidden="true"></div>
@@ -1472,7 +1544,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
       <p>We blend elevated design with smart strategy to create websites that not only look incredible, but actually grow your business.</p>
 
       <a href="#about-bbd" class="pill-link">
-        <span class="label">About BBD</span>
+        <span class="label">About me</span>
         <span class="arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </span>
@@ -1559,7 +1631,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
       </span>
       <h2>Timeless design.<br>Intentional strategy.<br>Real results.</h2>
       <a href="#portfolio-all" class="pill-link">
-        <span class="label">View portfolio</span>
+        <span class="label">Our portfolio</span>
         <span class="arrow" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </span>
@@ -1611,7 +1683,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
     </button>
 
     <blockquote class="quote-body">
-      <p>Charis completely understood my vision and created a website that feels like my brand and has elevated my business to a whole new level.</p>
+      <p>Charlie completely understood my creative vision and created a website that feels like my brand and has elevated my business to a whole new level.</p>
       <cite>Tash, Amore Celebrations</cite>
     </blockquote>
 
@@ -1701,7 +1773,7 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
     </div>
 
     <div class="footer-bottom">
-      <span>© 2025 Booked By Design by Charis White Celebrant &amp; Co.</span>
+      <span>© 2026 Booked By Design by Charis White Celebrant &amp; Co.</span>
       <span class="center">Made with intention in Melbourne</span>
       <span class="legal">
         <a href="#">Privacy Policy</a>
